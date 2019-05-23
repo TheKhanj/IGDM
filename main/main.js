@@ -22,22 +22,23 @@ let pollingInterval = 10000;
 let mainWindow
 let session
 
-function createWindow () {
+function createWindow() {
   if (!mainWindow) {
     mainWindow = new BrowserWindow({
-      width: 1200,
+      width: 400,
       height: 800,
       icon: `${__dirname}/../browser/img/icon.png`,
-      minWidth: 500,
-      minHeight: 400
+      minWidth: 300,
+      minHeight: 300
     })
   }
-  mainWindow.setTitle('IG:dm - Instagram Desktop Messenger')
+
+  mainWindow.setTitle('khanj instagram');
 
   instagram.checkAuth(session).then((result) => {
     let view = result.isLoggedIn ? '../browser/index.html' : '../browser/login.html'
     session = result.session || session
-
+    console.log(`khanj:: ${path.join(__dirname, view)}`)
     mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, view),
       protocol: 'file:',
@@ -45,7 +46,9 @@ function createWindow () {
     }))
   })
 
-  mainWindow.on('closed', () => mainWindow = null)
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  })
 }
 
 function createCheckpointWindow() {
@@ -55,7 +58,7 @@ function createCheckpointWindow() {
     resizable: false,
     icon: `${__dirname}/../browser/img/icon.png`,
   })
-  checkpointWindow.setTitle('IG:dm - Instagram verification code')
+  checkpointWindow.setTitle('khanj is good')
   checkpointWindow.loadURL(url.format({
     pathname: path.join(__dirname, '../browser/checkpoint.html'),
     protocol: 'file:',
@@ -65,13 +68,13 @@ function createCheckpointWindow() {
 }
 
 let chatListTimeoutObj;
-function getChatList () {
+function getChatList() {
   if (!session) {
     return
   }
   instagram.getChatList(session).then((chats) => {
     mainWindow.webContents.send('chatList', chats)
-    
+
     if (chatListTimeoutObj) {
       clearTimeout(chatListTimeoutObj)
     }
@@ -81,7 +84,7 @@ function getChatList () {
 
 let chatTimeoutObj;
 let messagesThread;
-function getChat (evt, id) {
+function getChat(evt, id) {
   if (!session) {
     return
   }
@@ -99,7 +102,7 @@ function getChat (evt, id) {
   }).catch(() => setTimeout(getChat, RATE_LIMIT_DELAY, evt, id))
 }
 
-function handleCheckpoint (checkpointError) {
+function handleCheckpoint(checkpointError) {
   return new Promise((resolve, reject) => {
     instagram.startCheckpoint(checkpointError)
       .then((challenge) => {
@@ -122,7 +125,7 @@ app.on('ready', () => {
   // this also leaves the dev console enabled when in dev mode.
   if (!process.defaultApp) {
     const menu = Menu.buildFromTemplate(menuTemplate);
-    Menu.setApplicationMenu(menu); 
+    Menu.setApplicationMenu(menu);
   }
   autoUpdater.init();
 })
@@ -150,7 +153,7 @@ app.on('browser-window-focus', () => {
 })
 
 electron.ipcMain.on('login', (evt, data) => {
-  if(data.username === "" || data.password === "") {
+  if (data.username === "" || data.password === "") {
     return mainWindow.webContents.send('loginError', "Please enter all required fields");
   }
   const login = (keepLastSession) => {

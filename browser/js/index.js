@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('button.open-emoji').onclick = () => {
     const onEmojiSelected = (emoji) => {
       document.querySelector(MSG_INPUT_SELECTOR).value += emoji;
-      document.querySelector('.emojis').classList.add('hide');
+      // document.querySelector('.emojis').classList.add('hide');
       document.querySelector(MSG_INPUT_SELECTOR).focus();
     }
     window.showEmojis(

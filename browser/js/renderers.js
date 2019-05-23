@@ -194,7 +194,7 @@ function renderContextMenu (text) {
 
 function renderChatListItem (username, msgPreview, thumbnail, id) {
   var li = document.createElement('li');
-  li.classList.add('col-12', 'p-3');
+  li.classList.add('col-12');
   li.appendChild(dom(`<div><img class="thumb" src="${thumbnail}"></div>`));
   li.appendChild(dom(`<div class="username ml-3 d-none d-sm-inline-block"><b>${username}</b><br>${msgPreview}</div>`));
   if (id) li.setAttribute("id", `chatlist-${id}`);
@@ -306,7 +306,7 @@ function renderOlderMessages (messages) {
 }
 
 function renderMessageSeenText (container, chat_) {
-  container.appendChild(dom(`<div class="seen italic outward"><p>${getIsSeenText(chat_)}</p></div>`));
+  container.appendChild(dom(`<div class="seen italic outward"><span>${getIsSeenText(chat_)}</span></div>`));
 }
 
 function renderUnfollowers (users) {

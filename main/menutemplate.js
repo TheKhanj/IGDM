@@ -15,6 +15,11 @@ const template = [
       {role: 'delete'},
       {role: 'selectall'}
     ]
+  },{
+    label: 'khanj',
+    submenu: [
+      {role: 'poop'}
+    ]
   },
   {
     label: 'View',

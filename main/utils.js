@@ -3,6 +3,8 @@ const Client = require('instagram-private-api').V1;
 const app = require('electron').app;
 const path = require('path');
 
+console.log(`Khanj:: ${path.join(app.getPath('userData'), 'session-cookie')}`);
+
 const buildAndGetStoragePath = () => {
   const storagePath = path.join(app.getPath('userData'), 'session-cookie')
   if (!fs.existsSync(storagePath)) {
