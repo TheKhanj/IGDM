@@ -29,7 +29,8 @@ function createWindow() {
       height: 800,
       icon: `${__dirname}/../browser/img/icon.png`,
       minWidth: 300,
-      minHeight: 300
+      minHeight: 300,
+      frame: false
     })
   }
 
@@ -125,7 +126,7 @@ app.on('ready', () => {
   // this also leaves the dev console enabled when in dev mode.
   if (!process.defaultApp) {
     const menu = Menu.buildFromTemplate(menuTemplate);
-    Menu.setApplicationMenu(menu);
+    Menu.setApplicationMenu(null);
   }
   autoUpdater.init();
 })

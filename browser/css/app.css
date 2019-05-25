@@ -16,7 +16,7 @@
 }
 
 body {
-    font-size: 12px;
+    font-size: 13px;
 	user-select: none;
 }
 
@@ -117,7 +117,7 @@ button:focus {
 
 .chat-list li .username {
     vertical-align: top;
-    font-size: 12px;
+    font-size: 13px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -180,16 +180,21 @@ button:focus {
     word-wrap: break-word;
     cursor: pointer;
     white-space: pre-line;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	font-size: 13px;
 }
 
 .chat .message .content img {
-    max-width: 100%;
+    max-width: 200px;
+}
+.chat .message .content> img{
+    transform: translate(-50%,0);
+    position: relative;
+    left: 50%;
 }
 
 .chat .message .content .post-caption,
 .chat .message .content a {
-    font-size: 1rem;
     color: #666;
 }
 
@@ -220,6 +225,7 @@ button:focus {
     float: left;
     padding: 0.5rem 0.75rem;
     max-width: 75%;
+    width: fit-content;
     color: #666;
     background-color: #EEE;
     border-top-left-radius: 0;
@@ -453,6 +459,9 @@ button:focus {
     align-items: center;
     min-width: 25%;
 }
+#header-form{
+    border-radius: 100px;
+}
 
 .header {
     background-color: #EEE;
@@ -549,7 +558,6 @@ EMOJIS
     height: 100vh;
     bottom: 0;
     right: 0;
-    font-size: 12px;
 
 }
 

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "gulp build && electron .",
     "pack": "gulp build && build --dir",
-    "dist": "gulp build && build -mwl --x64"
+    "dist": "gulp build && build -mwl --x64",
+    "release":"electron-packager . igdm --overwrite --overwrite-asar=true --platform=linux --arch=x64 --icon=/home/pooyan/Documents/01_programming/05_igdm/browser/img/love.png --prune=true --out=release"
   },
   "repository": {
     "type": "git",
