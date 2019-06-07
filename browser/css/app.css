@@ -183,15 +183,16 @@ button:focus {
     word-wrap: break-word;
     cursor: pointer;
     white-space: pre-line;
-	border: 1px solid rgba(0, 0, 0, 0.05);
-	font-size: 13px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 13px;
 }
 
 .chat .message .content img {
     max-height: 500px;
 }
-.chat .message .content> img{
-    transform: translate(-50%,0);
+
+.chat .message .content>img {
+    transform: translate(-50%, 0);
     position: relative;
     left: 50%;
 }
@@ -270,13 +271,13 @@ button:focus {
     text-align: right;
     color: #aaa;
     font-size: 12px;
-	font-style: normal;
-	padding: 5px 10px;
-	position: absolute;
-	bottom: 50px;
-	/* border: 2px solid red; */
-	display: block;
-	line-height: 12px;
+    font-style: normal;
+    padding: 5px 10px;
+    position: absolute;
+    bottom: 50px;
+    /* border: 2px solid red; */
+    display: block;
+    line-height: 12px;
 }
 
 .new-message {
@@ -443,12 +444,47 @@ button:focus {
         max-width: calc(100% - 4.5rem);
     }
 }
-@media (max-width: 650px){
-    .emojis{
-        position:fixed;
+
+@media (max-width: 650px) {
+    .emojis {
+        position: fixed;
+        height: 400px;
+        width: 300px;
+        bottom: 60px;
+        right: 15px;
+        border-radius: 5px;
+        border: 1px solid #DDD;
+        border-bottom-right-radius: 0;
+    }
+    .emojis::after{
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background : #EEE;
+        top: calc(100% - 2px);
+        right: 20px;
+        transform: rotate(45deg)  translate(0,-50%);
+        z-index: -1;
+        border: 1px solid #DDD;
+        border-top:none;
+        border-left:none;
+        border-bottom-right-radius: 5px;
     }
 }
 
+@media not all and (max-width: 650px) {
+    .emojis-close {
+        display: none;
+    }
+
+    .emojis {
+        height: 100vh;
+        width: 275px;
+        bottom: 0;
+        right: 0;
+    }
+}
 .appBody {
     position: relative;
     flex: 1 1;
@@ -461,14 +497,15 @@ button:focus {
     align-items: center;
     min-width: 25%;
 }
-#header-form{
+
+#header-form {
     border-radius: 100px;
 }
 
 .header {
     background-color: #EEE;
-	border-bottom: 1px solid #DFDFDF;
-	padding: 10px;
+    border-bottom: 1px solid #DFDFDF;
+    padding: 10px;
 }
 
 .messageBox {
@@ -522,8 +559,7 @@ EMOJIS
 ***********************************/
 
 @keyframes slideIn {
-    0% {
-    }
+    0% {}
 
     0% {
         transform: translateY(20px);
@@ -536,8 +572,8 @@ EMOJIS
         transform: translateY(0px);
         transform: translateX(0px);
         opacity: 1;
-		display: block;
-		
+        display: block;
+
     }
 }
 
@@ -551,21 +587,16 @@ EMOJIS
 }
 
 .emojis {
-    width: 310px;
-    background: #EEE;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    bottom: 0;
-    right: 0;
-
+    z-index: 2;
+    background: #EEE;
 }
 
 .emojis:not(.hide) {
     animation-name: slideIn;
     animation-duration: 0.2s;
     animation-timing-function: ease-out;
-    border-left: 1px solid #CCC;
     animation-fill-mode: backwards;
 }
 
@@ -577,7 +608,7 @@ EMOJIS
 }
 
 .emojis.hide {
-	display: none;
+    display: none;
 }
 
 .emojis-header {
@@ -600,13 +631,15 @@ EMOJIS
 
 .emojis-close {
     /* background-color: red; */
-	cursor: pointer;
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	z-index: -1;
+    cursor: pointer;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    /* background-color: black; */
+    /* opacity: 0.3; */
 }
 
 .emojis-body {
@@ -615,8 +648,8 @@ EMOJIS
     overflow-x: hidden;
     word-wrap: break-word;
     padding: 10px 10px;
-	text-align: center;
-	z-index: 1;
+    text-align: center;
+    z-index: 1;
 }
 
 .emojis-body .emoji {

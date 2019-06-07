@@ -5,46 +5,46 @@ append head
 
 block body
   body(no-js='', on-click-remove-class='.dropdown active')
-    .container_fluid.app
-      .header.d-flex
-        button.col-md-auto.settings(no-js='', on-mouseenter-add-class='.dropdown-menu active')
-        .dropdown-menu(no-js='', on-mouseleave-remove-class='.dropdown-menu active')
-          #seen-flagger.dropdown-item(title="You'd know when recipients read your message, but they won't know when you read theirs")
-            | Don't send 'Seen' receipts
-          #notifier-settings.dropdown-item
-            | Disable Notifications
-          #unfollowers.dropdown-item Users not following back
-          #logout.dropdown-item Log out
-        .search-header.col-md-auto
-          input#header-form.form-control(type='text', name='search', placeholder='Search Instagram users')
-      .appBody
-        .chat-list.col-4
-          .listStrapper.row
-            ul
-        .chat.col-8
-          .chat-title.row.p-3
-          .messages.row.pt-5
-            .center.cover
-              img(src='img/icon.png', width='120px')
-              p.italic Search and select a chat to start.
-          .messageBox.row
-            .new-message
-              form
-                textarea(placeholder='Start a message' id="messageText")
-            button.send-attachment
-              img(src='img/attachment.png', width='20px')
-            input.file-input.hide(type='file', accept='image/jpeg,image/jpg')
-            button.open-emoji(no-js='', on-click-toggle-class='.emojis hide')
-              img(src='img/smiley.png', width='20px')
-            
-      .viewer
-        button.close(no-js='', on-click-remove-class='.viewer active')
-          img(width='25px', src='img/close.png', alt='close icon')
-        .content
-  .emojis
-    .emojis-close
+  .container_fluid.app
+    .header.d-flex
+      button.col-md-auto.settings(no-js='', on-mouseenter-add-class='.dropdown-menu active')
+      .dropdown-menu(no-js='', on-mouseleave-remove-class='.dropdown-menu active')
+        #seen-flagger.dropdown-item(title="You'd know when recipients read your message, but they won't know when you read theirs")
+          | Don't send 'Seen' receipts
+        #notifier-settings.dropdown-item
+          | Disable Notifications
+        #unfollowers.dropdown-item Users not following back
+        #logout.dropdown-item Log out
+      .search-header.col-md-auto
+        input#header-form.form-control(type='text', name='search', placeholder='Search Instagram users')
+    .appBody
+      .chat-list.col-4
+        .listStrapper.row
+          ul
+      .chat.col-8
+        .chat-title.row.p-3
+        .messages.row.pt-5
+          .center.cover
+            img(src='img/icon.png', width='120px')
+            p.italic Search and select a chat to start.
+        .messageBox.row
+          .new-message
+            form
+              textarea(placeholder='Start a message' id="messageText")
+          button.send-attachment
+            img(src='img/attachment.png', width='20px')
+          input.file-input.hide(type='file', accept='image/jpeg,image/jpg')
+          button.open-emoji(no-js='', on-click='window.toggleEmojis')
+            img(src='img/smiley.png', width='20px')
+          
+    .viewer
+      button.close(no-js='', on-click-remove-class='.viewer active')
+        img(width='25px', src='img/close.png', alt='close icon')
+      .content
+  .emojis.hide
     .emojis-header
     .emojis-body
+  .emojis-close
   script(type='text/javascript', src='../node_modules/nojs/dist/no.min.js')
   script(type='text/javascript', src='js/globals.js')
   script(type='text/javascript', src='js/emoji.js')

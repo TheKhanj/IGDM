@@ -1,4 +1,7 @@
+var renderedEmojis = false;
 window.showEmojis = function (header, body, onselect) {
+  if (renderedEmojis) return;
+  renderedEmojis = true;
   header.innerHTML = ''
   window.emojis.EmojiDataArray.forEach((emojiCategory, index) => {
     var div = document.createElement('div');
@@ -6,12 +9,6 @@ window.showEmojis = function (header, body, onselect) {
     div.onclick = () => {
       body.innerHTML = '';
       var close = document.createElement('div');
-      // close.classList.add('close');
-      // close.onclick = () => {
-      //   alert('hello=');
-      //   document.querySelector('.emojis').classList.add('hide');
-      // }
-      // body.appendChild(close);
       emojiCategory.CVCategoryData.Data.split(',').forEach((emoji) => {
         var span = document.createElement('span');
         span.innerText = emoji;
@@ -25,13 +22,60 @@ window.showEmojis = function (header, body, onselect) {
     if (index === 0) div.onclick();
     header.appendChild(div);
   })
-  document.querySelector('.emojis-close').onclick=()=>{
-      document.querySelector('.emojis').classList.add('hide');
-      document.querySelector(MSG_INPUT_SELECTOR).focus();
-  }
+  document.querySelector('.emojis-close').onclick = window.toggleEmojis;
 }
-window.onload = function(){
-  document.querySelector('button.open-emoji').onclick();
+
+window.toggleEmojis = function () {
+  const onEmojiSelected = (emoji) => {
+    document.querySelector(MSG_INPUT_SELECTOR).value += emoji;
+    document.querySelector(MSG_INPUT_SELECTOR).focus();
+  }
+  const emojis = document.querySelector('.emojis');
+  if (emojis.classList.contains('hide')) {
+    window.showEmojis(
+      document.querySelector('.emojis-header'),
+      document.querySelector('.emojis-body'),
+      onEmojiSelected
+    )
+    document.querySelector('.emojis-close').classList.remove('hide');
+  } else {
+    document.querySelector('.emojis-close').classList.add('hide');
+  }
+  emojis.classList.toggle('hide');
+  document.querySelector('.app').classList.toggle('blur');
+  // alert("toggled Emojis");
+  document.querySelector(MSG_INPUT_SELECTOR).focus();
+}
+window.onload = function () {
+  window.toggleEmojis();
+  const onEmojiSelected = (emoji) => {
+    document.querySelector(MSG_INPUT_SELECTOR).value += emoji;
+    document.querySelector(MSG_INPUT_SELECTOR).focus();
+  }
+  var mouseEnter = false;
+  var timeout;
+  // document.querySelector('.open-emoji').onpointerover = function () {
+  //   mouseEnter = true;
+  //   const emojis = document.querySelector('.emojis');
+  //   if (emojis.classList.contains('hide')) {
+  //     window.toggleEmojis();
+  //   }
+  //   clearTimeout(timeout);
+  // }
+  // document.querySelector('.open-emoji').onpointerleave = function () {
+  //   mouseEnter = false;
+  //   timeout = setTimeout(() => {
+  //     // alert('etst');
+  //     if (!mouseEnter) {
+  //       const emojis = document.querySelector('.emojis');
+  //       if (!emojis.classList.contains('hide')) {
+  //         window.toggleEmojis();
+  //       }
+  //     }
+  //   }, 700);
+
+  // }
+
 }
 window.emojis = {
   "EmojiDataArray": [

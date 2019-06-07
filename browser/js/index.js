@@ -26,6 +26,7 @@ function getDisplayPictureUrl (userId) {
   ipcRenderer.send('getDisplayPictureUrl', userId);
 }
 
+
 // This code runs once the DOM is loaded (just in case you missed it).
 document.addEventListener('DOMContentLoaded', () => {
   ipcRenderer.on('loggedInUser', (evt, user) => {
@@ -76,18 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ipcRenderer.on('getDisplayPictureUrl', (evt, displayPicture) => {
     renderDisplayPicture(displayPicture);
   });
-
-  document.querySelector('button.open-emoji').onclick = () => {
-    const onEmojiSelected = (emoji) => {
-      document.querySelector(MSG_INPUT_SELECTOR).value += emoji;
-      document.querySelector(MSG_INPUT_SELECTOR).focus();
-    }
-    window.showEmojis(
-      document.querySelector('.emojis-header'),
-      document.querySelector('.emojis-body'),
-      onEmojiSelected
-    )
-  }
+  document.querySelector('button.open-emoji').onclick = window.toggleEmojis;
 
   let searchForm = document.querySelector('.header input[name=search]');
   searchForm.onkeyup = (e) => {
