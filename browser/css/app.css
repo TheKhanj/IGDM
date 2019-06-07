@@ -17,7 +17,9 @@
 
 body {
     font-size: 13px;
-	user-select: none;
+    user-select: none;
+    display: flex;
+    overflow: hidden;
 }
 
 ul {
@@ -40,7 +42,8 @@ button:focus {
 }
 
 .italic {
-    font-style: italic;
+    /* font-style: italic; */
+    font-size: 14px;
 }
 
 .hide {
@@ -396,16 +399,11 @@ button:focus {
 }
 
 .app {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+    width: -webkit-fill-available;
 }
 
 .chat-list {
@@ -443,6 +441,11 @@ button:focus {
 
     .chat {
         max-width: calc(100% - 4.5rem);
+    }
+}
+@media (max-width: 650px){
+    .emojis{
+        position:fixed;
     }
 }
 
@@ -549,8 +552,6 @@ EMOJIS
 
 .emojis {
     width: 310px;
-    max-width: 90%;
-    position: fixed;
     background: #EEE;
     display: flex;
     flex-direction: column;
