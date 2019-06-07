@@ -48,7 +48,7 @@ function setActive (el) {
   el.classList.add('active');
 
   // close opened emoji pane
-  document.querySelector('.emojis').classList.add('hide');
+  // document.querySelector('.emojis').classList.add('hide');
 }
 
 function getMsgDirection (message) {

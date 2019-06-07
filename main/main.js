@@ -25,21 +25,21 @@ let session
 function createWindow() {
   if (!mainWindow) {
     mainWindow = new BrowserWindow({
-      width: 400,
+      width: 1000,
       height: 800,
       icon: `${__dirname}/../browser/img/icon.png`,
-      minWidth: 300,
+      minWidth: 350,
       minHeight: 300,
-      frame: false
+      autoHideMenuBar: true,
+      center: true
     })
   }
 
-  mainWindow.setTitle('khanj instagram');
+  mainWindow.setTitle('Instagram');
 
   instagram.checkAuth(session).then((result) => {
     let view = result.isLoggedIn ? '../browser/index.html' : '../browser/login.html'
     session = result.session || session
-    console.log(`khanj:: ${path.join(__dirname, view)}`)
     mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, view),
       protocol: 'file:',
@@ -59,7 +59,7 @@ function createCheckpointWindow() {
     resizable: false,
     icon: `${__dirname}/../browser/img/icon.png`,
   })
-  checkpointWindow.setTitle('khanj is good')
+  checkpointWindow.setTitle('Instagram')
   checkpointWindow.loadURL(url.format({
     pathname: path.join(__dirname, '../browser/checkpoint.html'),
     protocol: 'file:',

@@ -30,7 +30,9 @@ window.showEmojis = function (header, body, onselect) {
       document.querySelector(MSG_INPUT_SELECTOR).focus();
   }
 }
-
+window.onload = function(){
+  document.querySelector('button.open-emoji').onclick();
+}
 window.emojis = {
   "EmojiDataArray": [
     {
